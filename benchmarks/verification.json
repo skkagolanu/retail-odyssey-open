@@ -1,19 +1,22 @@
 {
-  "backend_tests_passed": 57,
+  "backend_tests_passed": 61,
   "browser_tests_passed": 4,
   "ruff": "passed",
-  "mypy": "passed (18 source files)",
+  "mypy": "passed (19 source files)",
   "typescript_build": "passed",
   "npm_reported_vulnerabilities": 0,
   "runtime_pip_audit": "no known vulnerabilities found",
   "evidence_scope": "local engineering checks; see docs/verification.md for mocks, live provider runs and unverified cloud/GPU/ARM boundaries",
-  "implementation_source": "652de33d100ccd40ec424e298c5405c423eb9dd2",
-  "github_checks_run": "https://github.com/skkagolanu/retail-odyssey-open/actions/runs/44292823027",
+  "implementation_source": "c8438f048a1d8cdb4f8b1a3b18ad653ffe9bc43c",
+  "github_checks_run": "https://github.com/skkagolanu/retail-odyssey-open/actions/runs/44296607811",
   "github_jobs": {
     "verify": "success",
     "container": "success",
     "secrets": "success"
   },
   "docker_smoke": "passed: build, UID10001, readiness and real catalogue chat",
-  "compose_overlay_config": "passed"
+  "compose_overlay_config": "passed",
+  "cloudflare_protocol_tests": "passed with HTTPX mocks; not live inference",
+  "cloud_deployment": "not deployed; Render connection and private Cloudflare configuration pending",
+  "cloud_billing_state": "not verified; Workers Free confirmation required by configuration"
 }
