@@ -4,15 +4,17 @@ from pathlib import Path
 from typing import Literal
 from urllib.parse import urlsplit
 
-from pydantic import Field, field_validator
+from pydantic import Field, SecretStr, field_validator, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
 class Settings(BaseSettings):
-    model_config = SettingsConfigDict(env_prefix="RO_", env_file=".env", extra="ignore")
-    engine: Literal["catalogue", "ollama"] = "catalogue"
+    model_config = SettingsConfigDict(
+        env_prefix="RO_", env_file=".env", extra="ignore", hide_input_in_errors=True
+    )
+    engine: Literal["catalogue", "ollama", "cloudflare"] = "catalogue"
     database_path: Path = ROOT / "var/sessions.sqlite3"
     catalogue_path: Path = ROOT / "data/catalogue.json"
     allowed_retailers: tuple[str, ...] = (
@@ -41,6 +43,13 @@ class Settings(BaseSettings):
     ollama_url: str = "http://127.0.0.1:11434"
     ollama_model: str = "qwen3-vl:4b-instruct"
     ollama_threads: int = Field(default=2, ge=1, le=16)
+    cloudflare_account_id: str | None = Field(default=None, pattern=r"^[a-f0-9]{32}$")
+    cloudflare_api_token: SecretStr | None = None
+    cloudflare_free_plan_confirmed: bool = False
+    cloudflare_model: Literal["@cf/qwen/qwen3.8-27b"] = "@cf/qwen/qwen3.8-27b"
+    cloudflare_image_model: Literal["@cf/black-forest-labs/flux-1-schnell"] = (
+        "@cf/black-forest-labs/flux-1-schnell"
+    )
     comfyui_url: str | None = None
     comfyui_workflow: Path | None = None
 
@@ -78,3 +87,16 @@ class Settings(BaseSettings):
                 raise ValueError("Provider URL must be an administrator-configured HTTP(S) origin")
             return value.rstrip("/")
         return None
+
+    @model_validator(mode="after")
+    def cloud_configuration(self):
+        if self.engine == "cloudflare" and not (
+            self.cloudflare_account_id
+            and self.cloudflare_api_token
+            and self.cloudflare_api_token.get_secret_value().strip()
+            and self.cloudflare_free_plan_confirmed
+        ):
+            raise ValueError(
+                "Cloud mode requires Cloudflare account configuration and confirmation that Workers Free is selected"
+            )
+        return self

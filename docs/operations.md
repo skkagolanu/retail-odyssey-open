@@ -17,7 +17,7 @@ Refresh dependencies deliberately: regenerate constraints on Python3.12, run bac
 
 ## Free public Render demo
 
-[Render free web services](https://render.com/docs/free) support this Docker app. Use this repository's [render.yaml](../render.yaml) through **New → Blueprint**, or create a Docker web service from the repository and explicitly select **Free**. No model/API key is needed. This config does not provision paid services, a database or a disk.
+[Render free web services](https://render.com/docs/free) support this Docker app. Use the catalogue-only [render.catalogue.yaml](../render.catalogue.yaml) through **New → Blueprint**, or create a Docker web service from the repository and explicitly select **Free**. No model/API key is needed. This config does not provision paid services, a database or a disk.
 
 Once Render assigns your actual HTTPS hostname, set these dashboard environment variables, then deploy/redeploy:
 
@@ -40,3 +40,5 @@ docker compose -f docker-compose.yml -f compose.monitoring.yml up --build -d
 ```
 
 Open http://127.0.0.1:3000 for the provisioned **Retail Odyssey Open - Agent pipeline** dashboard; Prometheus is on loopback9090. This local dashboard is anonymous Viewer-only with initial admin creation and login disabled; there is no baked-in admin credential. Do not expose it directly to the internet. The Prometheus named volume preserves scraped samples across container replacement; default Prometheus retention applies. This configuration does not verify hosted retention. View generated metrics against actual agent requests, and distinguish reserved budgets from reported usage. New counters start afresh on app restart.
+
+For the actual cloud model agents, use the primary render.yaml and follow [cloud deployment](cloud.md). The catalogue-only section above remains a provider-free baseline, not evidence of hosted AI.

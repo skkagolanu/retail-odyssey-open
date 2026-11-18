@@ -49,7 +49,11 @@ class GroupChatOrchestrator:
     async def process_message(
         self, message: str, state: SessionState, image: str | None = None
     ) -> dict:
-        budget = TokenBudget()
+        budget = (
+            TokenBudget(per_call_output=512, output_limit=1536)
+            if self.config.engine == "cloudflare"
+            else TokenBudget()
+        )
         token = CURRENT_BUDGET.set(budget)
         try:
             return await self._execute(message, state, image, budget)
@@ -121,7 +125,7 @@ class GroupChatOrchestrator:
             state.preferences = intent.preferences
             if image:
                 state.wardrobe_context = ""
-                if self.config.engine == "ollama":
+                if self.config.engine != "catalogue":
                     try:
                         description, counts = await invoke(
                             "vision",
@@ -142,7 +146,7 @@ class GroupChatOrchestrator:
 
                     await invoke("vision", "validation_only", validate_only, ())
                     warnings.append(
-                        "Wardrobe image analysis requires the optional local vision model. No image analysis was performed."
+                        "Wardrobe image analysis requires a configured vision model. No image analysis was performed."
                     )
                 context = replace(context, wardrobe_description=state.wardrobe_context)
             started = time.perf_counter()
@@ -162,7 +166,7 @@ class GroupChatOrchestrator:
             record("retrieval", started, "catalogue", handoff=("candidate_records",))
             model_selected = False
             try:
-                use_model = self.config.engine == "ollama" and bool(products)
+                use_model = self.config.engine != "catalogue" and bool(products)
                 products, counts = await invoke(
                     "recommendation",
                     "model" if use_model else "catalogue",
@@ -173,10 +177,10 @@ class GroupChatOrchestrator:
                 )
                 if use_model:
                     usage.append(dict(agent="recommendation", **counts))
-                    model_selected, engine = True, "ollama"
+                    model_selected, engine = True, self.config.engine
             except ProviderUnavailable:
                 warnings.append(
-                    "The local model was unavailable or returned unvalidated output. This reply uses only the same catalogue records."
+                    "The configured model was unavailable or returned unvalidated output. This reply uses only the same catalogue records."
                 )
             context = replace(context, product_ids=tuple(p.id for p in products))
             try:
@@ -215,7 +219,7 @@ class GroupChatOrchestrator:
                     started = time.perf_counter()
                     record("image", started, "schematic", "unavailable")
                     warnings.append(
-                        "Generative images are not configured. The product layout is a schematic moodboard, not an AI-generated photo or a product photograph."
+                        "Generative images are not configured for this reply. The product layout is a schematic moodboard, not an AI-generated photo or a product photograph."
                     )
             state.recommendation_ids = [p.id for p in products]
             state.conversation_state = intent.kind

@@ -47,14 +47,16 @@ def normalize_image(data_url: str) -> str:
         raise ValueError("The uploaded image is invalid") from error
 
 
-async def bounded_json(client: httpx.AsyncClient, method: str, url: str, **kwargs: Any) -> dict:
+async def bounded_json(
+    client: httpx.AsyncClient, method: str, url: str, *, max_bytes: int = 1_000_000, **kwargs: Any
+) -> dict:
     try:
         async with client.stream(method, url, **kwargs) as response:
             response.raise_for_status()
             chunks = bytearray()
             async for chunk in response.aiter_bytes():
                 chunks.extend(chunk)
-                if len(chunks) > 1_000_000:
+                if len(chunks) > max_bytes:
                     raise ProviderUnavailable("Provider response exceeded its size limit")
         value = json.loads(chunks)
         if not isinstance(value, dict):

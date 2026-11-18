@@ -1,4 +1,4 @@
-# Public catalogue demo; free instances sleep and do not persist SQLite history.
+# Real cloud agents; explicitly select Free on Render and Workers Free on Cloudflare.
 services:
   - type: web
     name: retail-odyssey-open
@@ -7,12 +7,20 @@ services:
     healthCheckPath: /api/health
     envVars:
       - key: RO_ENGINE
-        value: catalogue
+        value: cloudflare
       - key: RO_MAX_INFLIGHT
         value: '1'
+      - key: RO_MAX_SESSION_REQUESTS_PER_MINUTE
+        value: '6'
       - key: RO_SECURE_COOKIES
         value: 'true'
       - key: RO_ALLOWED_ORIGINS
         sync: false
       - key: RO_TRUSTED_HOSTS
+        sync: false
+      - key: RO_CLOUDFLARE_ACCOUNT_ID
+        sync: false
+      - key: RO_CLOUDFLARE_API_TOKEN
+        sync: false
+      - key: RO_CLOUDFLARE_FREE_PLAN_CONFIRMED
         sync: false

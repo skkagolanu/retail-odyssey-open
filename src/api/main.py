@@ -14,6 +14,7 @@ from starlette.middleware.trustedhost import TrustedHostMiddleware
 
 from src.agents.group_chat_orchestrator import GroupChatOrchestrator
 from src.catalogue import Catalogue
+from src.cloud_provider import CloudflareImageProvider, CloudflareProvider
 from src.providers import ComfyProvider, OllamaProvider
 from src.schemas import ChatRequest
 from src.sessions import (
@@ -131,7 +132,16 @@ def create_app(
             catalogue = await asyncio.to_thread(
                 Catalogue, config.catalogue_path, config.allowed_retailers
             )
-            model, images = OllamaProvider(config, client), ComfyProvider(config, client)
+            model = (
+                CloudflareProvider(config, client)
+                if config.engine == "cloudflare"
+                else OllamaProvider(config, client)
+            )
+            images = (
+                CloudflareImageProvider(config, client)
+                if config.engine == "cloudflare"
+                else ComfyProvider(config, client)
+            )
             application.state.orchestrator = GroupChatOrchestrator(
                 config, catalogue, model, images, metrics
             )
@@ -275,21 +285,27 @@ def create_app(
             except TimeoutError as error:
                 raise HTTPException(
                     504,
-                    "The local inference time budget expired; try a smaller model or catalogue mode",
+                    "The inference time budget expired; try again later or use catalogue mode",
                 ) from error
             finally:
                 await store.release(lease)
 
     @app.get("/api/health")
     async def health():
-        model_available = await app.state.model.available() if config.engine == "ollama" else None
+        model_available = (
+            await app.state.model.available() if config.engine != "catalogue" else None
+        )
         return dict(
             status="ready" if config.engine == "catalogue" or model_available else "degraded",
             release="open-v2",
             engine=config.engine,
             catalogue=app.state.catalogue.info(),
             model_available=model_available,
-            model_name=config.ollama_model if config.engine == "ollama" else None,
+            model_name=(
+                config.cloudflare_model if config.engine == "cloudflare" else config.ollama_model
+            )
+            if config.engine != "catalogue"
+            else None,
             image_generation_configured=app.state.images.configured,
         )
 

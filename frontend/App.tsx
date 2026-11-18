@@ -258,9 +258,11 @@ export default function App() {
             className={`status-dot ${health?.status === "ready" ? "is-ready" : ""}`}
           />
           <span>
-            {health?.engine === "ollama"
+            {health?.engine !== "catalogue" && health?.engine !== undefined
               ? health.status === "ready"
-                ? "Local model connected"
+                ? health.engine === "cloudflare"
+                  ? "Cloud model connected"
+                  : "Local model connected"
                 : "Catalogue fallback available"
               : "Catalogue assistant"}
           </span>
@@ -524,8 +526,10 @@ export default function App() {
               <details className="response-details">
                 <summary>Response details</summary>
                 <p>
-                  {reply.engine === "ollama"
-                    ? "Local model selection"
+                  {reply.engine !== "catalogue"
+                    ? reply.engine === "cloudflare"
+                      ? "Cloud agent selection"
+                      : "Local model selection"
                     : "Deterministic catalogue styling"}{" "}
                   · {Math.round(reply.timings.total_ms)} ms server processing
                 </p>
