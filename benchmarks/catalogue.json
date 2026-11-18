@@ -1,0 +1,230 @@
+{
+  "recorded_at": "2026-11-18T11:13:08.126708+00:00",
+  "protocol": "18 sequential real loopback HTTP requests; 3 six-turn conversations, no provider calls. First request is NOT process-cold-start evidence.",
+  "python": "3.12.15",
+  "system": "Linux",
+  "machine": "x86_64",
+  "cpu": "",
+  "model": null,
+  "catalogue_sha256": "272835c150232fed21ecf19d906a5c6129e2de52a3dccc4f4ab2d6ef3fb6dcae",
+  "health": {
+    "status": "ready",
+    "release": "open-v2",
+    "engine": "catalogue",
+    "catalogue": {
+      "mode": "sample",
+      "description": "Fictional garments and illustrative prices for a working offline demo. No real inventory, merchant affiliation or purchase availability is implied.",
+      "products": 12,
+      "stock_verified": false
+    },
+    "model_available": null,
+    "model_name": null,
+    "image_generation_configured": false
+  },
+  "count": 18,
+  "failures": 0,
+  "median_http_ms": 15.09,
+  "p95_http_ms": 16.468,
+  "max_http_ms": 16.468,
+  "rows": [
+    {
+      "repetition": 0,
+      "question_id": 0,
+      "route": "greeting",
+      "engine": "catalogue",
+      "agents": "intent > conversation",
+      "reserved_output_tokens": 0,
+      "products": 0,
+      "http_ms": 12.843,
+      "server_ms": 0.378
+    },
+    {
+      "repetition": 0,
+      "question_id": 1,
+      "route": "about",
+      "engine": "catalogue",
+      "agents": "intent > conversation",
+      "reserved_output_tokens": 0,
+      "products": 0,
+      "http_ms": 13.849,
+      "server_ms": 0.496
+    },
+    {
+      "repetition": 0,
+      "question_id": 2,
+      "route": "fashion",
+      "engine": "catalogue",
+      "agents": "intent > retrieval > recommendation > conversation",
+      "reserved_output_tokens": 0,
+      "products": 2,
+      "http_ms": 13.124,
+      "server_ms": 0.6
+    },
+    {
+      "repetition": 0,
+      "question_id": 3,
+      "route": "fashion",
+      "engine": "catalogue",
+      "agents": "intent > retrieval > recommendation > conversation",
+      "reserved_output_tokens": 0,
+      "products": 2,
+      "http_ms": 14.062,
+      "server_ms": 0.621
+    },
+    {
+      "repetition": 0,
+      "question_id": 4,
+      "route": "fashion",
+      "engine": "catalogue",
+      "agents": "intent > retrieval > recommendation > conversation",
+      "reserved_output_tokens": 0,
+      "products": 2,
+      "http_ms": 13.952,
+      "server_ms": 0.666
+    },
+    {
+      "repetition": 0,
+      "question_id": 5,
+      "route": "out_of_scope",
+      "engine": "catalogue",
+      "agents": "intent > conversation",
+      "reserved_output_tokens": 0,
+      "products": 0,
+      "http_ms": 14.0,
+      "server_ms": 0.46
+    },
+    {
+      "repetition": 1,
+      "question_id": 0,
+      "route": "greeting",
+      "engine": "catalogue",
+      "agents": "intent > conversation",
+      "reserved_output_tokens": 0,
+      "products": 0,
+      "http_ms": 13.511,
+      "server_ms": 0.361
+    },
+    {
+      "repetition": 1,
+      "question_id": 1,
+      "route": "about",
+      "engine": "catalogue",
+      "agents": "intent > conversation",
+      "reserved_output_tokens": 0,
+      "products": 0,
+      "http_ms": 14.747,
+      "server_ms": 0.313
+    },
+    {
+      "repetition": 1,
+      "question_id": 2,
+      "route": "fashion",
+      "engine": "catalogue",
+      "agents": "intent > retrieval > recommendation > conversation",
+      "reserved_output_tokens": 0,
+      "products": 2,
+      "http_ms": 16.023,
+      "server_ms": 0.593
+    },
+    {
+      "repetition": 1,
+      "question_id": 3,
+      "route": "fashion",
+      "engine": "catalogue",
+      "agents": "intent > retrieval > recommendation > conversation",
+      "reserved_output_tokens": 0,
+      "products": 2,
+      "http_ms": 16.012,
+      "server_ms": 0.61
+    },
+    {
+      "repetition": 1,
+      "question_id": 4,
+      "route": "fashion",
+      "engine": "catalogue",
+      "agents": "intent > retrieval > recommendation > conversation",
+      "reserved_output_tokens": 0,
+      "products": 2,
+      "http_ms": 16.11,
+      "server_ms": 0.618
+    },
+    {
+      "repetition": 1,
+      "question_id": 5,
+      "route": "out_of_scope",
+      "engine": "catalogue",
+      "agents": "intent > conversation",
+      "reserved_output_tokens": 0,
+      "products": 0,
+      "http_ms": 15.445,
+      "server_ms": 0.314
+    },
+    {
+      "repetition": 2,
+      "question_id": 0,
+      "route": "greeting",
+      "engine": "catalogue",
+      "agents": "intent > conversation",
+      "reserved_output_tokens": 0,
+      "products": 0,
+      "http_ms": 15.299,
+      "server_ms": 0.36
+    },
+    {
+      "repetition": 2,
+      "question_id": 1,
+      "route": "about",
+      "engine": "catalogue",
+      "agents": "intent > conversation",
+      "reserved_output_tokens": 0,
+      "products": 0,
+      "http_ms": 15.106,
+      "server_ms": 0.238
+    },
+    {
+      "repetition": 2,
+      "question_id": 2,
+      "route": "fashion",
+      "engine": "catalogue",
+      "agents": "intent > retrieval > recommendation > conversation",
+      "reserved_output_tokens": 0,
+      "products": 2,
+      "http_ms": 16.468,
+      "server_ms": 0.448
+    },
+    {
+      "repetition": 2,
+      "question_id": 3,
+      "route": "fashion",
+      "engine": "catalogue",
+      "agents": "intent > retrieval > recommendation > conversation",
+      "reserved_output_tokens": 0,
+      "products": 2,
+      "http_ms": 16.069,
+      "server_ms": 0.63
+    },
+    {
+      "repetition": 2,
+      "question_id": 4,
+      "route": "fashion",
+      "engine": "catalogue",
+      "agents": "intent > retrieval > recommendation > conversation",
+      "reserved_output_tokens": 0,
+      "products": 2,
+      "http_ms": 15.22,
+      "server_ms": 0.411
+    },
+    {
+      "repetition": 2,
+      "question_id": 5,
+      "route": "out_of_scope",
+      "engine": "catalogue",
+      "agents": "intent > conversation",
+      "reserved_output_tokens": 0,
+      "products": 0,
+      "http_ms": 15.075,
+      "server_ms": 0.349
+    }
+  ],
+  "limits": "One development host, sequential sample traffic. Not model latency, ARM, concurrent throughput, shopping accuracy or uptime evidence."
+}

@@ -1,0 +1,80 @@
+name: Checks
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: python -m pip install -r requirements-dev.txt
+      - run: ruff check src tests scripts && ruff format --check src tests scripts && mypy src && pytest -q --junitxml=artifacts/pytest.xml
+      - name: Runtime dependency vulnerability audit
+        run: python -m pip install pip-audit==2.10.1 && pip-audit -r requirements.txt
+      - run: npm --prefix frontend ci && npm --prefix frontend audit --audit-level=high && npm --prefix frontend run format:check && npm --prefix frontend run build
+      - run: cd frontend && npx playwright install --with-deps chromium
+      - name: Real catalogue browser regression
+        run: |
+          mkdir -p artifacts
+          uvicorn src.api.main:app --host 127.0.0.1 --port 8000 --no-access-log > artifacts/server.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid"' EXIT
+          python -c "import time,urllib.request; time.sleep(2); urllib.request.urlopen('http://127.0.0.1:8000/api/health')"
+          npm --prefix frontend run test:e2e
+          python scripts/benchmark.py --output artifacts/catalogue
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: verification
+          path: |
+            artifacts/
+            frontend/test-results/
+  container:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - run: docker compose -f docker-compose.yml -f compose.monitoring.yml config --quiet
+      - run: docker build -t retail-open:test .
+      - name: Container readiness, catalogue chat and non-root execution
+        run: |
+          docker run --detach --name retail-open --publish 127.0.0.1:8000:8000 retail-open:test
+          trap 'docker logs retail-open; docker container stop retail-open' EXIT
+          for attempt in $(seq 1 30); do
+            if curl --fail http://localhost:8000/api/health; then break; fi
+            sleep 1
+          done
+          test "$(docker exec retail-open id -u)" = 10001
+          python -m pip install httpx
+          python - <<'PY'
+          import httpx
+          with httpx.Client(base_url='http://localhost:8000', headers={'Origin':'http://localhost:8000'}) as client:
+              assert client.get('/api/health').json()['status'] == 'ready'
+              client.get('/api/session').raise_for_status()
+              result = client.post('/api/chat', json={'message':'casual outfit under £70'}).raise_for_status().json()
+              assert result['products'] and result['engine'] == 'catalogue'
+          PY
+  secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - name: Scan release history without credential values
+        run: |
+          scan_dir=$(mktemp -d)
+          cd "$scan_dir"
+          curl --fail --location --silent --show-error https://github.com/gitleaks/gitleaks/releases/download/v8.30.1/gitleaks_8.30.1_linux_x64.tar.gz --output scanner.tar.gz
+          curl --fail --location --silent --show-error https://github.com/gitleaks/gitleaks/releases/download/v8.30.1/gitleaks_8.30.1_checksums.txt --output checksums.txt
+          mv scanner.tar.gz gitleaks_8.30.1_linux_x64.tar.gz
+          sha256sum --check --ignore-missing checksums.txt
+          tar -xzf gitleaks_8.30.1_linux_x64.tar.gz gitleaks
+          cd "$GITHUB_WORKSPACE"
+          "$scan_dir/gitleaks" git --redact=100 --log-opts=HEAD

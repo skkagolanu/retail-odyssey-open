@@ -1,0 +1,201 @@
+{
+  "recorded_at": "2026-11-18T11:12:26.375538+00:00",
+  "protocol": "One real loopback HTTP catalogue/Ollama chat, no mocks. Warm-model state is uncontrolled; not a cold/warm, quality or throughput benchmark.",
+  "health": {
+    "status": "ready",
+    "release": "open-v2",
+    "engine": "ollama",
+    "catalogue": {
+      "mode": "sample",
+      "description": "Fictional garments and illustrative prices for a working offline demo. No real inventory, merchant affiliation or purchase availability is implied.",
+      "products": 12,
+      "stock_verified": false
+    },
+    "model_available": true,
+    "model_name": "qwen3-vl:2b-instruct",
+    "image_generation_configured": false
+  },
+  "http_ms": 12088.076,
+  "result": {
+    "answer": "These illustrative sample pieces give you a top, shoes combination to start from. The cards show the recorded product details. Stock and current checkout prices have not been verified. Consider how your layers work together for the occasion. Which colours do you prefer?",
+    "products": [
+      {
+        "id": "cotton-shirt",
+        "name": "Cotton Oxford shirt",
+        "brand": "Odyssey Sample Studio",
+        "retailer": "Illustrative sample catalogue",
+        "category": "top",
+        "price_pence": 2800,
+        "currency": "GBP",
+        "tags": [
+          "classic",
+          "business",
+          "formal",
+          "shirt",
+          "wedding",
+          "sky"
+        ],
+        "url": null,
+        "captured_at": "2026-11-18T00:00:00Z"
+      },
+      {
+        "id": "derby-shoes",
+        "name": "Classic derby shoes",
+        "brand": "Odyssey Sample Studio",
+        "retailer": "Illustrative sample catalogue",
+        "category": "shoes",
+        "price_pence": 5600,
+        "currency": "GBP",
+        "tags": [
+          "formal",
+          "business",
+          "classic",
+          "wedding",
+          "shoes",
+          "cocoa"
+        ],
+        "url": null,
+        "captured_at": "2026-11-18T00:00:00Z"
+      }
+    ],
+    "catalogue": {
+      "mode": "sample",
+      "description": "Fictional garments and illustrative prices for a working offline demo. No real inventory, merchant affiliation or purchase availability is implied.",
+      "products": 12,
+      "stock_verified": false
+    },
+    "preferences": {
+      "occasion": "business",
+      "style": "classic",
+      "budget_gbp": 100.0
+    },
+    "warnings": [],
+    "image": null,
+    "image_kind": "schematic",
+    "engine": "ollama",
+    "route": "fashion",
+    "trace_id": "e746a28900d948ef8361f51692b11eb4",
+    "agent_trace": [
+      {
+        "trace_id": "e746a28900d948ef8361f51692b11eb4",
+        "sequence": 1,
+        "agent": "intent",
+        "mode": "rules",
+        "status": "completed",
+        "duration_ms": 1.404,
+        "handoff_keys": [
+          "route",
+          "preferences",
+          "invocation_plan"
+        ]
+      },
+      {
+        "trace_id": "e746a28900d948ef8361f51692b11eb4",
+        "sequence": 2,
+        "agent": "retrieval",
+        "mode": "catalogue",
+        "status": "completed",
+        "duration_ms": 0.178,
+        "handoff_keys": [
+          "candidate_records"
+        ]
+      },
+      {
+        "trace_id": "e746a28900d948ef8361f51692b11eb4",
+        "sequence": 3,
+        "agent": "recommendation",
+        "mode": "model",
+        "status": "completed",
+        "duration_ms": 7392.059,
+        "handoff_keys": [
+          "selected_product_ids"
+        ]
+      },
+      {
+        "trace_id": "e746a28900d948ef8361f51692b11eb4",
+        "sequence": 4,
+        "agent": "conversation",
+        "mode": "model",
+        "status": "completed",
+        "duration_ms": 4675.835,
+        "handoff_keys": [
+          "constrained_styling_plan",
+          "reply"
+        ]
+      }
+    ],
+    "token_budget": {
+      "context_limit": 4096,
+      "turn_input_limit": 10000,
+      "turn_output_limit": 384,
+      "reserved_input_tokens": 2637,
+      "reserved_output_tokens": 256,
+      "estimator": "UTF-8 byte upper-bound proxy plus fixed image reserve; actual model usage is reported separately",
+      "calls": [
+        {
+          "agent": "recommendation",
+          "estimated_input_tokens": 1242,
+          "reserved_output_tokens": 128,
+          "dropped_history_messages": 0,
+          "status": "completed",
+          "usage": {
+            "prompt_eval_count": 213,
+            "eval_count": 16
+          }
+        },
+        {
+          "agent": "conversation",
+          "estimated_input_tokens": 1395,
+          "reserved_output_tokens": 128,
+          "dropped_history_messages": 0,
+          "status": "completed",
+          "usage": {
+            "prompt_eval_count": 211,
+            "eval_count": 25
+          }
+        }
+      ]
+    },
+    "timings": {
+      "total_ms": 12070.645,
+      "stages": [
+        {
+          "name": "intent",
+          "duration_ms": 1.404,
+          "status": "completed"
+        },
+        {
+          "name": "retrieval",
+          "duration_ms": 0.178,
+          "status": "completed"
+        },
+        {
+          "name": "recommendation",
+          "duration_ms": 7392.059,
+          "status": "completed"
+        },
+        {
+          "name": "conversation",
+          "duration_ms": 4675.835,
+          "status": "completed"
+        }
+      ]
+    },
+    "token_usage": [
+      {
+        "agent": "recommendation",
+        "prompt_eval_count": 213,
+        "eval_count": 16,
+        "total_duration": 7388581995,
+        "load_duration": 3073246507
+      },
+      {
+        "agent": "conversation",
+        "prompt_eval_count": 211,
+        "eval_count": 25,
+        "total_duration": 4672533424,
+        "load_duration": 1021270
+      }
+    ]
+  }
+}

@@ -1,0 +1,197 @@
+{
+  "mode": "sample",
+  "description": "Fictional garments and illustrative prices for a working offline demo. No real inventory, merchant affiliation or purchase availability is implied.",
+  "products": [
+    {
+      "id": "cotton-shirt",
+      "name": "Cotton Oxford shirt",
+      "brand": "Odyssey Sample Studio",
+      "retailer": "Illustrative sample catalogue",
+      "category": "top",
+      "price_pence": 2800,
+      "tags": [
+        "classic",
+        "business",
+        "formal",
+        "shirt",
+        "wedding",
+        "sky"
+      ],
+      "captured_at": "2026-11-18T00:00:00Z"
+    },
+    {
+      "id": "relaxed-tee",
+      "name": "Relaxed cotton tee",
+      "brand": "Odyssey Sample Studio",
+      "retailer": "Illustrative sample catalogue",
+      "category": "top",
+      "price_pence": 1600,
+      "tags": [
+        "casual",
+        "minimalist",
+        "shirt",
+        "summer",
+        "cream"
+      ],
+      "captured_at": "2026-11-18T00:00:00Z"
+    },
+    {
+      "id": "knit-polo",
+      "name": "Textured knit polo",
+      "brand": "Odyssey Sample Studio",
+      "retailer": "Illustrative sample catalogue",
+      "category": "top",
+      "price_pence": 3400,
+      "tags": [
+        "casual",
+        "classic",
+        "date",
+        "party",
+        "sand"
+      ],
+      "captured_at": "2026-11-18T00:00:00Z"
+    },
+    {
+      "id": "tailored-trousers",
+      "name": "Tailored straight trousers",
+      "brand": "Odyssey Sample Studio",
+      "retailer": "Illustrative sample catalogue",
+      "category": "bottom",
+      "price_pence": 4200,
+      "tags": [
+        "formal",
+        "business",
+        "classic",
+        "wedding",
+        "ink"
+      ],
+      "captured_at": "2026-11-18T00:00:00Z"
+    },
+    {
+      "id": "straight-jeans",
+      "name": "Straight denim jeans",
+      "brand": "Odyssey Sample Studio",
+      "retailer": "Illustrative sample catalogue",
+      "category": "bottom",
+      "price_pence": 3600,
+      "tags": [
+        "casual",
+        "streetwear",
+        "classic",
+        "jeans",
+        "denim"
+      ],
+      "captured_at": "2026-11-18T00:00:00Z"
+    },
+    {
+      "id": "linen-trousers",
+      "name": "Easy linen trousers",
+      "brand": "Odyssey Sample Studio",
+      "retailer": "Illustrative sample catalogue",
+      "category": "bottom",
+      "price_pence": 3200,
+      "tags": [
+        "casual",
+        "minimalist",
+        "summer",
+        "date",
+        "sand"
+      ],
+      "captured_at": "2026-11-18T00:00:00Z"
+    },
+    {
+      "id": "unstructured-blazer",
+      "name": "Unstructured blazer",
+      "brand": "Odyssey Sample Studio",
+      "retailer": "Illustrative sample catalogue",
+      "category": "layer",
+      "price_pence": 6800,
+      "tags": [
+        "formal",
+        "business",
+        "classic",
+        "wedding",
+        "ink"
+      ],
+      "captured_at": "2026-11-18T00:00:00Z"
+    },
+    {
+      "id": "overshirt",
+      "name": "Utility overshirt",
+      "brand": "Odyssey Sample Studio",
+      "retailer": "Illustrative sample catalogue",
+      "category": "layer",
+      "price_pence": 4400,
+      "tags": [
+        "casual",
+        "streetwear",
+        "bold",
+        "jacket",
+        "olive"
+      ],
+      "captured_at": "2026-11-18T00:00:00Z"
+    },
+    {
+      "id": "low-top-trainers",
+      "name": "Low-top trainers",
+      "brand": "Odyssey Sample Studio",
+      "retailer": "Illustrative sample catalogue",
+      "category": "shoes",
+      "price_pence": 3800,
+      "tags": [
+        "casual",
+        "minimalist",
+        "streetwear",
+        "shoes",
+        "cream"
+      ],
+      "captured_at": "2026-11-18T00:00:00Z"
+    },
+    {
+      "id": "derby-shoes",
+      "name": "Classic derby shoes",
+      "brand": "Odyssey Sample Studio",
+      "retailer": "Illustrative sample catalogue",
+      "category": "shoes",
+      "price_pence": 5600,
+      "tags": [
+        "formal",
+        "business",
+        "classic",
+        "wedding",
+        "shoes",
+        "cocoa"
+      ],
+      "captured_at": "2026-11-18T00:00:00Z"
+    },
+    {
+      "id": "training-tee",
+      "name": "Breathable training tee",
+      "brand": "Odyssey Sample Studio",
+      "retailer": "Illustrative sample catalogue",
+      "category": "top",
+      "price_pence": 1800,
+      "tags": [
+        "workout",
+        "sporty",
+        "shirt",
+        "sky"
+      ],
+      "captured_at": "2026-11-18T00:00:00Z"
+    },
+    {
+      "id": "training-shorts",
+      "name": "Training shorts",
+      "brand": "Odyssey Sample Studio",
+      "retailer": "Illustrative sample catalogue",
+      "category": "bottom",
+      "price_pence": 2400,
+      "tags": [
+        "workout",
+        "sporty",
+        "ink"
+      ],
+      "captured_at": "2026-11-18T00:00:00Z"
+    }
+  ]
+}

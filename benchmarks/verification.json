@@ -1,0 +1,10 @@
+{
+  "backend_tests_passed": 57,
+  "browser_tests_passed": 4,
+  "ruff": "passed",
+  "mypy": "passed (18 source files)",
+  "typescript_build": "passed",
+  "npm_reported_vulnerabilities": 0,
+  "runtime_pip_audit": "no known vulnerabilities found",
+  "evidence_scope": "local engineering checks; see docs/verification.md for mocks, live provider runs and unverified cloud/GPU/ARM boundaries"
+}

@@ -1,0 +1,29 @@
+{
+  "name": "retail-odyssey-open",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "scripts": {
+    "build": "tsc --noEmit && node build.mjs",
+    "watch": "node build.mjs --watch",
+    "test:e2e": "playwright test",
+    "format:check": "prettier --check \"*.{ts,tsx,css,mjs,html,json}\" \"e2e/*.ts\""
+  },
+  "dependencies": {
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@types/node": "24.19.2",
+    "typescript": "7.0.2",
+    "@playwright/test": "1.65.1",
+    "@axe-core/playwright": "4.14.0",
+    "esbuild": "0.28.2",
+    "prettier": "3.10.1"
+  }
+}

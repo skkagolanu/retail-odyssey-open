@@ -1,0 +1,3 @@
+# Contributing
+
+Use Python 3.12 and Node 24. Follow the README verification commands before submitting a PR. Add regression tests when changing session isolation, URL validation, provider contracts or metrics. Keep product facts server-owned, optional capabilities explicit, session state bounded and logs free of chat/image content. Never commit credentials, real wardrobe images or model weights. Keep sample records fictional; real snapshots need source URLs, timestamps and redistribution permission. Update the limitation matrix and evidence when a capability changes. Report security issues privately as described in SECURITY.md.

@@ -1,0 +1,24 @@
+services:
+  app:
+    build: .
+    ports: ["127.0.0.1:8000:8000"]
+    environment:
+      RO_ENGINE: ${RO_ENGINE:-catalogue}
+      RO_OLLAMA_URL: http://ollama:11434
+      RO_OLLAMA_MODEL: ${RO_OLLAMA_MODEL:-qwen3-vl:4b-instruct}
+    volumes: ["sessions:/app/var"]
+    restart: unless-stopped
+    init: true
+    security_opt: ["no-new-privileges:true"]
+    cap_drop: ["ALL"]
+  ollama:
+    image: ollama/ollama:0.40.16
+    profiles: ["models"]
+    volumes: ["models:/root/.ollama"]
+    restart: unless-stopped
+    environment:
+      OLLAMA_NUM_PARALLEL: "1"
+      OLLAMA_NO_CLOUD: "1"
+volumes:
+  sessions:
+  models:

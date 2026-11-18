@@ -1,0 +1,40 @@
+{
+  "recorded_at": "2026-11-18T08:06:13.239492+00:00",
+  "model": "qwen3-vl:2b",
+  "threads": 2,
+  "ollama": "0.40.16",
+  "hardware": "CPU only, x86_64 development host",
+  "protocol": "One schema chat call then one synthetic blue garment vision call. Single attempts, no human photo. Not quality, warm/cold or throughput benchmark.",
+  "results": [
+    {
+      "kind": "chat",
+      "status": "completed",
+      "result": {
+        "answer": "Blue shirt with sand-chinos",
+        "product_ids": [
+          "blue-shirt",
+          "sand-chinos"
+        ]
+      },
+      "usage": {
+        "prompt_eval_count": 45,
+        "eval_count": 275,
+        "total_duration": 16858821329,
+        "load_duration": 2579655107
+      },
+      "elapsed_seconds": 16.875
+    },
+    {
+      "kind": "vision",
+      "status": "completed",
+      "result": "A blue T-shirt",
+      "usage": {
+        "prompt_eval_count": 1089,
+        "eval_count": 90,
+        "total_duration": 50119361925,
+        "load_duration": 1037251
+      },
+      "elapsed_seconds": 50.134
+    }
+  ]
+}

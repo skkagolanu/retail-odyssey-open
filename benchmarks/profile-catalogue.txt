@@ -1,0 +1,42 @@
+Ten in-process catalogue agent turns; includes Python/client startup. No actual HTTP/model, concurrency or ARM claims.
+         78284 function calls (75806 primitive calls) in 0.060 seconds
+
+   Ordered by: cumulative time
+   List reduced from 1268 to 35 due to restriction <35>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    0.060    0.060 runners.py:160(run)
+        3    0.000    0.000    0.060    0.020 base_events.py:655(run_until_complete)
+        1    0.000    0.000    0.060    0.060 runners.py:86(run)
+        3    0.000    0.000    0.060    0.020 base_events.py:631(run_forever)
+        6    0.000    0.000    0.060    0.010 base_events.py:1922(_run_once)
+        6    0.000    0.000    0.060    0.010 events.py:86(_run)
+        6    0.001    0.000    0.060    0.010 {method 'run' of '_contextvars.Context' objects}
+        1    0.000    0.000    0.059    0.059 profile_pipeline.py:20(workload)
+       11    0.000    0.000    0.047    0.004 __init__.py:1(<module>)
+    117/6    0.000    0.000    0.040    0.007 <frozen importlib._bootstrap>:1349(_find_and_load)
+     88/5    0.000    0.000    0.040    0.008 <frozen importlib._bootstrap>:1304(_find_and_load_unlocked)
+     77/6    0.000    0.000    0.040    0.007 <frozen importlib._bootstrap>:911(_load_unlocked)
+     76/6    0.000    0.000    0.040    0.007 <frozen importlib._bootstrap_external>:993(exec_module)
+   169/11    0.000    0.000    0.038    0.003 <frozen importlib._bootstrap>:480(_call_with_frames_removed)
+    171/6    0.005    0.000    0.038    0.006 {built-in method builtins.exec}
+        1    0.000    0.000    0.025    0.025 _client.py:1353(__init__)
+        1    0.000    0.000    0.025    0.025 _client.py:1432(_init_transport)
+        1    0.000    0.000    0.025    0.025 default.py:280(__init__)
+        1    0.000    0.000    0.021    0.021 _client.py:2008(__aexit__)
+        1    0.000    0.000    0.021    0.021 default.py:365(__aexit__)
+        1    0.000    0.000    0.021    0.021 connection_pool.py:358(__aexit__)
+        1    0.000    0.000    0.021    0.021 connection_pool.py:347(aclose)
+        1    0.000    0.000    0.021    0.021 connection_pool.py:341(_close_connections)
+        1    0.000    0.000    0.021    0.021 _synchronization.py:198(__init__)
+     40/3    0.000    0.000    0.021    0.007 __init__.py:73(import_module)
+     42/3    0.000    0.000    0.021    0.007 <frozen importlib._bootstrap>:1375(_gcd_import)
+        1    0.000    0.000    0.018    0.018 _tasks.py:55(__new__)
+        1    0.000    0.000    0.018    0.018 _eventloop.py:195(get_async_backend)
+        1    0.000    0.000    0.017    0.017 _asyncio.py:1(<module>)
+        1    0.000    0.000    0.016    0.016 _api.py:1(<module>)
+      5/3    0.000    0.000    0.015    0.005 {built-in method builtins.__import__}
+        2    0.000    0.000    0.014    0.007 connection.py:1(<module>)
+        2    0.000    0.000    0.010    0.005 http11.py:1(<module>)
+    38/35    0.000    0.000    0.009    0.000 _lazyimport.py:33(__getattr__)
+       76    0.000    0.000    0.009    0.000 <frozen importlib._bootstrap_external>:1066(get_code)

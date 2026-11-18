@@ -1,0 +1,99 @@
+{
+  "protocol": "One real HTTP chat through complete FastAPI/catalogue/Ollama pipeline; actual local service, no mocks. CPU only, model qwen3-vl:2b, two threads. Warm model after earlier provider smoke. Not statistical performance or quality evidence.",
+  "health": {
+    "status": "ready",
+    "release": "open-v2",
+    "engine": "ollama",
+    "catalogue": {
+      "mode": "sample",
+      "description": "Fictional garments and illustrative prices for a working offline demo. No real inventory, merchant affiliation or purchase availability is implied.",
+      "products": 12,
+      "stock_verified": false
+    },
+    "model_available": true,
+    "image_generation_configured": false
+  },
+  "http_ms": 23901.468,
+  "result": {
+    "answer": "These illustrative sample pieces give you a top, shoes combination to start from. The cards show the recorded product details. Stock and current checkout prices have not been verified.",
+    "products": [
+      {
+        "id": "cotton-shirt",
+        "name": "Cotton Oxford shirt",
+        "brand": "Odyssey Sample Studio",
+        "retailer": "Illustrative sample catalogue",
+        "category": "top",
+        "price_pence": 2800,
+        "currency": "GBP",
+        "tags": [
+          "classic",
+          "business",
+          "formal",
+          "shirt",
+          "wedding",
+          "sky"
+        ],
+        "url": null,
+        "captured_at": "2026-11-18T00:00:00Z"
+      },
+      {
+        "id": "derby-shoes",
+        "name": "Classic derby shoes",
+        "brand": "Odyssey Sample Studio",
+        "retailer": "Illustrative sample catalogue",
+        "category": "shoes",
+        "price_pence": 5600,
+        "currency": "GBP",
+        "tags": [
+          "formal",
+          "business",
+          "classic",
+          "wedding",
+          "shoes",
+          "cocoa"
+        ],
+        "url": null,
+        "captured_at": "2026-11-18T00:00:00Z"
+      }
+    ],
+    "catalogue": {
+      "mode": "sample",
+      "description": "Fictional garments and illustrative prices for a working offline demo. No real inventory, merchant affiliation or purchase availability is implied.",
+      "products": 12,
+      "stock_verified": false
+    },
+    "preferences": {
+      "occasion": "business",
+      "style": "classic",
+      "budget_gbp": 100.0
+    },
+    "warnings": [
+      "The local model was unavailable or returned unvalidated output. This reply uses only the same catalogue records."
+    ],
+    "image": null,
+    "image_kind": "schematic",
+    "engine": "catalogue",
+    "route": "fashion",
+    "timings": {
+      "total_ms": 23884.448,
+      "stages": [
+        {
+          "name": "intent",
+          "duration_ms": 1.348,
+          "status": "completed"
+        },
+        {
+          "name": "retrieval",
+          "duration_ms": 0.172,
+          "status": "completed"
+        },
+        {
+          "name": "generation",
+          "duration_ms": 23882.544,
+          "status": "unavailable"
+        }
+      ]
+    },
+    "token_usage": []
+  }
+}
