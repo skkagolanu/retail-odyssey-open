@@ -17,6 +17,7 @@
   "docker_smoke": "passed: build, UID10001, readiness and real catalogue chat",
   "compose_overlay_config": "passed",
   "cloudflare_protocol_tests": "passed with HTTPX mocks; not live inference",
-  "cloud_deployment": "not deployed; Render connection and private Cloudflare configuration pending",
-  "cloud_billing_state": "not verified; Workers Free confirmation required by configuration"
+  "cloud_deployment": "Render Free live in catalogue mode; four public browser checks passed. Actual Cloudflare inference pending private configuration.",
+  "cloud_billing_state": "not verified; Workers Free confirmation required by configuration",
+  "hosting_evidence": "benchmarks/render-hosting.json"
 }

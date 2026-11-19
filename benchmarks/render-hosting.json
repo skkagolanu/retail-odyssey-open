@@ -1,0 +1,19 @@
+{
+  "recorded_at": "2026-11-19T03:25:46.528271+00:00",
+  "url": "https://retail-odyssey-open.onrender.com",
+  "service_id": "srv-dbv6me3l550s738sl050",
+  "deployment_id": "dep-dbv6mgntrrvc73bckqvg",
+  "deployment_status": "live",
+  "deployed_source": "6eec1bdde7af4c920d053387a165ce7b7cdd8728",
+  "plan": "free",
+  "region": "singapore",
+  "engine": "catalogue",
+  "health_http_status": 200,
+  "health_json_status": "ready",
+  "public_browser_tests_passed": 4,
+  "browser_scope": "Real public catalogue API, session isolation/reset/reload, desktop/mobile accessibility and explicit capability limitations; error retry case deliberately intercepts503.",
+  "cloudflare_inference_verified": false,
+  "cloudflare_configuration": "Private account/token and Workers Free confirmation pending; no credentials included.",
+  "storage": "Ephemeral Render Free filesystem; session resets on restart/deploy/spin-down.",
+  "deployment_configuration_source": "Direct Render service configuration; no Blueprint auto-sync relationship was created."
+}

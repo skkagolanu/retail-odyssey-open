@@ -2,6 +2,8 @@
 
 A local-first **multi-agent fashion assistant** with sequential context handoffs, grounded model generation, shared token budgets and per-agent observability. Product cards remain catalogue-backed; browser conversations are isolated. Runs on **Python 3.12** and **Node 24**. MIT licensed.
 
+**Public app:** [retail-odyssey-open.onrender.com](https://retail-odyssey-open.onrender.com). Render Free deployment and four public browser checks are verified. It currently runs catalogue mode; actual cloud-agent inference remains pending private Cloudflare configuration.
+
 This is an independently maintained derivative of [Retail Odyssey](https://github.com/skkagolanu/Retail-Odyssey), starting from `c272839a51bc0cc8104b4a2ef649ca36b2e49774`. It has clean release history; the original project is unchanged. See [NOTICE](NOTICE).
 
 ## Agent pipeline
